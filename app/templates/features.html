@@ -1,0 +1,203 @@
+{% extends "base.html" %}
+
+{% block title %}Features — M12Labs{% endblock %}
+{% block meta_description %}Explore M12Labs features: payment integrations, advanced billing cycles, and powerful UI themes for hosting providers and self-hosters.{% endblock %}
+{% block og_title %}M12Labs Features{% endblock %}
+{% block og_description %}Payment integrations, advanced billing cycles, and powerful UI themes.{% endblock %}
+
+{% block content %}
+
+<div class="page-header section">
+  <div class="container">
+    <h1 class="page-heading">Features</h1>
+    <p class="page-sub">Three focused areas designed to make your panel operation effortless.</p>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════
+     BILLING & PAYMENTS
+═══════════════════════════════════════════════════ -->
+<section class="features-category section" aria-labelledby="cat-billing">
+  <div class="container features-category-inner">
+    <div class="features-category-text">
+      <span class="category-label">Billing &amp; Payments</span>
+      <h2 id="cat-billing" class="section-heading">Collect payments your way.</h2>
+      <p class="section-body">
+        M12Labs ships with first-class integrations for the payment providers that hosting businesses actually use.
+        Configure gateways globally or per-plan, and let the platform handle invoice generation, retries, and receipts.
+      </p>
+      <ul class="features-list">
+        <li>
+          <span class="features-list-icon" aria-hidden="true">✦</span>
+          <div>
+            <strong>Multi-provider support</strong>
+            <p>Stripe, Mollie, and additional gateways — swap or run them side-by-side.</p>
+          </div>
+        </li>
+        <li>
+          <span class="features-list-icon" aria-hidden="true">✦</span>
+          <div>
+            <strong>Automatic invoicing</strong>
+            <p>Invoices are generated, sent, and tracked without manual action.</p>
+          </div>
+        </li>
+        <li>
+          <span class="features-list-icon" aria-hidden="true">✦</span>
+          <div>
+            <strong>Smart renewal logic</strong>
+            <p>Failed payments trigger configurable retry sequences before flagging an account.</p>
+          </div>
+        </li>
+        <li>
+          <span class="features-list-icon" aria-hidden="true">✦</span>
+          <div>
+            <strong>Per-plan gateway routing</strong>
+            <p>Route different plan tiers to different gateways for fee optimisation.</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="features-category-visual">
+      <div class="screenshot-frame">
+        <img
+          src="/static/img/screenshots/billing_overview.png"
+          alt="Billing overview dashboard in M12Labs"
+          loading="lazy"
+        />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     PLANS & CYCLES
+═══════════════════════════════════════════════════ -->
+<section class="features-category features-category--alt section" aria-labelledby="cat-plans">
+  <div class="container features-category-inner">
+    <div class="features-category-visual">
+      <div class="screenshot-frame">
+        <img
+          src="/static/img/screenshots/plans_pricing.png"
+          alt="Plans and pricing configuration in M12Labs"
+          loading="lazy"
+        />
+      </div>
+    </div>
+    <div class="features-category-text">
+      <span class="category-label">Plans &amp; Cycles</span>
+      <h2 id="cat-plans" class="section-heading">Precision pricing for every model.</h2>
+      <p class="section-body">
+        Whether you bill monthly, quarterly, or by the day, M12Labs handles the math — including
+        node multipliers, promo windows, and free tiers — without requiring any code changes.
+      </p>
+      <ul class="features-list">
+        <li>
+          <span class="features-list-icon" aria-hidden="true">✦</span>
+          <div>
+            <strong>Day-based billing</strong>
+            <p>Prorate charges precisely for mid-cycle upgrades, downgrades, and cancellations.</p>
+          </div>
+        </li>
+        <li>
+          <span class="features-list-icon" aria-hidden="true">✦</span>
+          <div>
+            <strong>Node-multiplier pricing</strong>
+            <p>Scale plan costs automatically based on the number of game server nodes provisioned.</p>
+          </div>
+        </li>
+        <li>
+          <span class="features-list-icon" aria-hidden="true">✦</span>
+          <div>
+            <strong>Promo &amp; free tiers</strong>
+            <p>Create time-limited promotions or permanent free plans — all managed from the UI.</p>
+          </div>
+        </li>
+        <li>
+          <span class="features-list-icon" aria-hidden="true">✦</span>
+          <div>
+            <strong>Plan overrides</strong>
+            <p>Grant individual users custom rates or cycle durations without affecting the global plan.</p>
+          </div>
+        </li>
+        <li>
+          <span class="features-list-icon" aria-hidden="true">✦</span>
+          <div>
+            <strong>Multi-cycle management</strong>
+            <p>Run monthly, quarterly, and annual cycles simultaneously on a single panel.</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     UI & THEMES
+═══════════════════════════════════════════════════ -->
+<section class="features-category section" aria-labelledby="cat-themes">
+  <div class="container features-category-inner">
+    <div class="features-category-text">
+      <span class="category-label">UI &amp; Themes</span>
+      <h2 id="cat-themes" class="section-heading">A panel that looks like yours.</h2>
+      <p class="section-body">
+        M12Labs ships with a polished dark-first interface and a live theme editor so hosting providers
+        can match the panel to their brand — no design tools required.
+      </p>
+      <ul class="features-list">
+        <li>
+          <span class="features-list-icon" aria-hidden="true">✦</span>
+          <div>
+            <strong>Live theme editor</strong>
+            <p>Adjust colours, typography, and layout breakpoints and preview changes immediately.</p>
+          </div>
+        </li>
+        <li>
+          <span class="features-list-icon" aria-hidden="true">✦</span>
+          <div>
+            <strong>Dark-first design system</strong>
+            <p>High-contrast defaults meet WCAG AA contrast requirements out of the box.</p>
+          </div>
+        </li>
+        <li>
+          <span class="features-list-icon" aria-hidden="true">✦</span>
+          <div>
+            <strong>Extensible components</strong>
+            <p>Drop in custom views and widgets at defined extension points without forking core.</p>
+          </div>
+        </li>
+        <li>
+          <span class="features-list-icon" aria-hidden="true">✦</span>
+          <div>
+            <strong>Responsive layouts</strong>
+            <p>Mobile-first grid adapts cleanly from phone to widescreen without media-query hacks.</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="features-category-visual">
+      <div class="screenshot-frame">
+        <img
+          src="/static/img/screenshots/themes_overview.png"
+          alt="Theme overview and customisation in M12Labs"
+          loading="lazy"
+        />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════
+     FINAL CTA
+═══════════════════════════════════════════════════ -->
+<section class="cta-band section" aria-labelledby="features-cta-heading">
+  <div class="container cta-inner">
+    <h2 class="cta-heading" id="features-cta-heading">Ready to see it for yourself?</h2>
+    <p class="cta-sub">Join the Discord for live demos, early access, and community support.</p>
+    <div class="cta-actions">
+      <a href="/discord" class="btn btn-primary btn-lg">Join Discord</a>
+      <a href="{{ settings.docs_url }}" class="btn btn-secondary btn-lg" target="_blank" rel="noopener noreferrer">Get Started</a>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+
+{% block title %}Screenshots — M12Labs{% endblock %}
+{% block meta_description %}Browse M12Labs panel screenshots: billing checkout, plans, cycles, and theme customisation.{% endblock %}
+{% block og_title %}M12Labs Screenshots{% endblock %}
+{% block og_description %}See the M12Labs panel in action — billing, plans, and themes.{% endblock %}
+
+{% block content %}
+
+<div class="page-header section">
+  <div class="container">
+    <h1 class="page-heading">Screenshots</h1>
+    <p class="page-sub">A visual tour of billing flows, cycle management, and theme customisation.</p>
+  </div>
+</div>
+
+<section class="gallery-section section" aria-labelledby="gallery-heading">
+  <div class="container">
+    <h2 class="sr-only" id="gallery-heading">Screenshot gallery</h2>
+
+    <!-- Filter tabs -->
+    <nav class="gallery-filters" aria-label="Filter screenshots by category">
+      <button
+        class="filter-btn{% if selected_category == 'All' %} active{% endif %}"
+        data-filter="All"
+        aria-pressed="{{ 'true' if selected_category == 'All' else 'false' }}"
+      >All</button>
+      {% for cat in active_categories %}
+      <button
+        class="filter-btn{% if selected_category == cat %} active{% endif %}"
+        data-filter="{{ cat }}"
+        aria-pressed="{{ 'true' if selected_category == cat else 'false' }}"
+      >{{ cat }}</button>
+      {% endfor %}
+    </nav>
+
+    {% if screenshots %}
+    <!-- Gallery grid -->
+    <div class="gallery-grid" id="gallery-grid">
+      {% for shot in screenshots %}
+      <button
+        class="gallery-item"
+        data-category="{{ shot.category }}"
+        data-src="{{ shot.url }}"
+        data-alt="{{ shot.alt }}"
+        aria-label="View screenshot: {{ shot.alt }}"
+        style="background:none;border:none;padding:0;cursor:pointer;"
+      >
+        <div class="screenshot-frame gallery-frame">
+          <img
+            src="{{ shot.url }}"
+            alt="{{ shot.alt }}"
+            loading="lazy"
+            class="gallery-thumb"
+          />
+          <div class="gallery-overlay" aria-hidden="true">
+            <span class="gallery-zoom">&#x2315;</span>
+          </div>
+        </div>
+        <p class="gallery-caption">{{ shot.alt }}</p>
+      </button>
+      {% endfor %}
+    </div>
+    <p class="gallery-empty" id="gallery-empty" hidden>No screenshots in this category yet.</p>
+    {% else %}
+    <div class="gallery-placeholder">
+      <p>Screenshots are coming soon. Drop <code>.png</code> files into <code>app/static/img/screenshots/</code> using the naming convention described in the README.</p>
+    </div>
+    {% endif %}
+  </div>
+</section>
+
+{% endblock %}
