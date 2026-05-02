@@ -35,8 +35,10 @@ export default function PageMeta({ title, description }) {
     const ogUrlTag = ensureMetaTag('meta[property="og:url"]', { property: "og:url" });
     ogUrlTag.setAttribute("content", `${siteConfig.siteUrl}${location.pathname}`);
 
-    const ogImageTag = ensureMetaTag('meta[property="og:image"]', { property: "og:image" });
-    ogImageTag.setAttribute("content", `${siteConfig.siteUrl}/img/og-image.png`);
+    const ogImageTag = document.head.querySelector('meta[property="og:image"]');
+    if (ogImageTag) {
+      ogImageTag.remove();
+    }
   }, [title, description, location.pathname]);
 
   return null;
