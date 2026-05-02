@@ -1,17 +1,18 @@
-FROM python:3.12-slim
+FROM node:20-alpine AS build
 
 WORKDIR /app
 
-# Install dependencies
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt \
- && apt-get update -qq && apt-get install -y --no-install-recommends curl \
- && rm -rf /var/lib/apt/lists/*
+COPY package.json package-lock.json* ./
+RUN npm install
 
-# Copy application code
-COPY app/ ./app/
-COPY .env.example .env
+COPY . .
+RUN npm run build
 
-EXPOSE 8000
+FROM nginx:1.27-alpine
 
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+COPY --from=build /app/dist /usr/share/nginx/html
+
+EXPOSE 80
+
+CMD ["nginx", "-g", "daemon off;"]

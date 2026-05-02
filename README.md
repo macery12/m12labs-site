@@ -1,162 +1,98 @@
-# M12Labs Site
+# M12Labs Site (Vite + React)
 
-Premium marketing website for the **M12Labs** game management panel.
+Marketing site for M12Labs, now refactored to a client-rendered React app using Vite and JSX.
 
 ## Tech stack
 
-- **FastAPI** — HTTP routing
-- **Jinja2** — server-side templates
-- **Pydantic Settings** — `.env`-based configuration
-- **Uvicorn** — ASGI server
-
----
+- Vite
+- React 18 (JSX)
+- React Router
+- CSS (single stylesheet)
+- Nginx (production container)
 
 ## Local development
 
-### Prerequisites
+Prerequisites:
 
-- Python 3.12+
+- Node.js 20+
+- npm 10+
 
-### 1. Clone and set up
+Setup and run:
 
 ```bash
-git clone https://github.com/macery12/m12labs-site.git
-cd m12labs-site
-
-python -m venv .venv
-source .venv/bin/activate        # Windows: .venv\Scripts\activate
-pip install -r requirements.txt
+npm install
+npm run dev
 ```
 
-### 2. Configure environment
+Vite dev server will start on http://localhost:5173.
+
+## Environment variables
+
+Create a `.env` file from `.env.example` and edit values if needed.
 
 ```bash
 cp .env.example .env
-# Edit .env if you want to change any URLs
 ```
 
-### 3. Run the dev server
+Expected variables:
 
-```bash
-uvicorn app.main:app --reload --port 8000
-```
+- `VITE_SITE_URL`
+- `VITE_DOCS_URL`
+- `VITE_DISCORD_URL`
+- `VITE_GITHUB_URL`
 
-Visit http://localhost:8000
+## Scripts
 
----
-
-## Docker
-
-### Quick start
-
-```bash
-cp .env.example .env        # edit if needed
-docker compose up --build
-```
-
-Site is served on http://localhost:8000
-
-### Single container
-
-```bash
-docker build -t m12labs-site .
-docker run -p 8000:8000 --env-file .env m12labs-site
-```
-
----
+- `npm run dev`: start development server
+- `npm run build`: create production build
+- `npm run preview`: serve the production build locally
 
 ## Routes
 
-| Path | Description |
-|------|-------------|
-| `/` | Home (marketing) |
-| `/features` | Features overview |
-| `/screenshots` | Screenshot gallery |
-| `/support` | Support / contact |
-| `/discord` | Redirect to Discord invite |
-| `/health` | JSON health check `{"status":"ok"}` |
+- `/`: home
+- `/features`: features page
+- `/screenshots`: screenshot gallery with filters and lightbox
+- `/support`: support page with FAQ and contact form demo
+- `/discord`: redirect to Discord URL from env
+- `/health`: returns `{"status":"ok"}` for health checks
 
----
+## Docker
 
-## Configuration (.env)
+Build and run with Compose:
 
-| Variable | Default | Description |
-|----------|---------|-------------|
-| `SITE_URL` | `https://m12labs.net` | Canonical site URL (used in OG tags) |
-| `DOCS_URL` | `https://docs.m12labs.net` | External docs link |
-| `DISCORD_URL` | `https://discord.gg/fVJZtqKYrc` | Discord invite URL |
-| `GITHUB_URL` | `https://github.com/macery12/M12labs` | GitHub repo URL |
-
-Copy `.env.example` to `.env` and edit the values you need.
-
----
-
-## Screenshots / gallery
-
-All screenshots live in `app/static/img/screenshots/`.
-
-### Filename prefix -> category mapping
-
-| Prefix | Category shown in UI |
-|--------|----------------------|
-| `billing_` | Billing & Payments |
-| `plans_` | Plans & Cycles |
-| `themes_` | UI & Themes |
-| `misc_` | Miscellaneous (shown only when files exist) |
-
-### Adding screenshots
-
-1. Drop a `.png` (or `.jpg`, `.webp`) file into `app/static/img/screenshots/`.
-2. Name it with the correct prefix, e.g. `billing_refund_flow.png`.
-3. The gallery page rebuilds the list server-side on every request — no code changes needed.
-
-### Placeholder images
-
-The repo ships with simple placeholder images for every referenced filename.
-Replace them with real screenshots when available:
-
-```
-app/static/img/screenshots/billing_checkout.png
-app/static/img/screenshots/billing_overview.png
-app/static/img/screenshots/plans_cycles.png
-app/static/img/screenshots/plans_pricing.png
-app/static/img/screenshots/themes_editor.png
-app/static/img/screenshots/themes_overview.png
+```bash
+docker compose up --build
 ```
 
----
+App is served on http://localhost:8000.
 
-## Replacing the logo
+The container uses a multi-stage build:
 
-Swap out `app/static/img/logo.png` with your own image (32x32 or 64x64 PNG recommended).
-The img tag in the nav bar uses `width="32" height="32"`, adjust in `base.html` if needed.
-
----
+1. Build static assets with Vite in a Node image.
+2. Serve `dist` with Nginx.
 
 ## Project structure
 
-```
+```text
 m12labs-site/
-├── app/
-│   ├── main.py           # FastAPI routes
-│   ├── config.py         # Pydantic Settings
-│   ├── gallery.py        # Screenshot directory scanner
-│   ├── templates/
-│   │   ├── base.html
-│   │   ├── home.html
-│   │   ├── features.html
-│   │   ├── screenshots.html
-│   │   └── support.html
-│   └── static/
-│       ├── css/site.css
-│       ├── js/site.js
-│       └── img/
-│           ├── logo.png
-│           ├── og-image.png
-│           └── screenshots/
+├── public/
+│   └── img/
+├── src/
+│   ├── components/
+│   ├── data/
+│   ├── pages/
+│   ├── App.jsx
+│   ├── main.jsx
+│   └── styles.css
 ├── .env.example
-├── Dockerfile
 ├── docker-compose.yml
-├── requirements.txt
+├── Dockerfile
+├── nginx.conf
+├── index.html
+├── package.json
 └── README.md
 ```
+
+## Notes
+
+- Legacy FastAPI files have been removed.
