@@ -252,6 +252,7 @@ button, input, textarea {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
+  justify-content: center;
 }
 
 .quick-fact {
@@ -345,6 +346,10 @@ button, input, textarea {
 .section-sub {
   margin: 0 0 28px;
   color: var(--text-muted);
+}
+
+.section-sub--warn {
+  color: #ffd79b;
 }
 
 .section-body {

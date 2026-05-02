@@ -20,12 +20,12 @@ export default function FeaturesPage() {
         <div className="container features-category-inner">
           <div className="features-category-text">
             <span className="category-label">Extensions</span>
-            <h2 id="cat-ext" className="section-heading">A package ecosystem built for repeatable delivery.</h2>
-            <p className="section-body">The M12Labs extension repository publishes versioned packages, with metadata and checksums consumed directly by the panel installer flow.</p>
+            <h2 id="cat-ext" className="section-heading">A custom-built extension system designed for fast releases.</h2>
+            <p className="section-body">The M12Labs extension system publishes versioned packages with metadata and checksums consumed directly by panel install flows.</p>
             <ul className="features-list">
               <li><span className="features-list-icon" aria-hidden="true">✦</span><div><strong>Manifest + checksum pipeline</strong><p>Every package archive is indexed with SHA-256 integrity metadata.</p></div></li>
               <li><span className="features-list-icon" aria-hidden="true">✦</span><div><strong>CLI + admin install routes</strong><p>Install by extension id, release version, or local package artifact.</p></div></li>
-              <li><span className="features-list-icon" aria-hidden="true">✦</span><div><strong>Curated package catalog</strong><p>Startup Editor, Player Manager, DiscordSRV Helper, Log Uploader, and more.</p></div></li>
+              <li><span className="features-list-icon" aria-hidden="true">✦</span><div><strong>Live extension catalog</strong><p>Powered by the official M12Labs Extensions repository, with every listed release reviewed and supported by M12Labs.</p></div></li>
             </ul>
           </div>
           <div className="features-category-visual"><div className="screenshot-frame"><img src="/img/screenshots/themes_overview.png" alt="M12Labs extensible interface and module controls" loading="lazy" /></div></div>

@@ -1,7 +1,45 @@
+import { useEffect, useState } from "react";
 import PageMeta from "../components/PageMeta";
 import { siteConfig } from "../data/site";
 
 export default function HomePage() {
+  const [extensions, setExtensions] = useState([]);
+  const [extensionsLoading, setExtensionsLoading] = useState(true);
+  const [extensionsError, setExtensionsError] = useState("");
+
+  useEffect(() => {
+    const abortController = new AbortController();
+
+    const loadExtensions = async () => {
+      try {
+        setExtensionsLoading(true);
+        const response = await fetch(siteConfig.extensionsRegistryUrl, { signal: abortController.signal });
+
+        if (!response.ok) {
+          throw new Error(`Failed to load extensions registry: ${response.status}`);
+        }
+
+        const data = await response.json();
+        const packages = Array.isArray(data?.packages) ? data.packages : [];
+        setExtensions(packages);
+      } catch (error) {
+        if (error.name === "AbortError") {
+          return;
+        }
+
+        setExtensionsError("Unable to load live extensions right now.");
+      } finally {
+        setExtensionsLoading(false);
+      }
+    };
+
+    loadExtensions();
+
+    return () => {
+      abortController.abort();
+    };
+  }, []);
+
   return (
     <>
       <PageMeta
@@ -44,7 +82,7 @@ export default function HomePage() {
         <div className="container feature-row-inner">
           <div className="feature-row-text">
             <span className="version-tag">M12Labs Extensions</span>
-            <h2 id="feature-extension-heading" className="feature-row-heading">An extension pipeline that ships fast and installs clean.</h2>
+            <h2 id="feature-extension-heading" className="feature-row-heading">A custom-built extension system that ships fast and installs clean.</h2>
             <ul className="feature-bullets">
               <li>Signed package registry with archive checksums and versioned release metadata.</li>
               <li>One-command publish flow builds, hashes, and indexes new extension releases.</li>
@@ -99,16 +137,26 @@ export default function HomePage() {
 
       <section className="feature-grid-section section" aria-labelledby="feature-grid-heading">
         <div className="container">
-          <h2 className="section-heading" id="feature-grid-heading">Built-in integrations people actually use</h2>
-          <p className="section-sub">Core modules plus extension packages covering daily Minecraft operations.</p>
+          <h2 className="section-heading" id="feature-grid-heading">Current Extensions We Offer</h2>
+          <p className="section-sub">Powered by the official M12Labs Extensions repository, with every listed release reviewed and supported by M12Labs.</p>
+          {extensionsError ? <p className="section-sub section-sub--warn">{extensionsError}</p> : null}
+          {extensionsLoading ? <p className="section-sub">Loading extensions...</p> : null}
           <div className="feature-grid">
-            <article className="feature-card"><span className="feature-card-icon" aria-hidden="true">🧩</span><h3 className="feature-card-title">Minecraft Startup Editor</h3><p>Preset-based startup tuning with a server-side allowlist for safer configuration.</p><span className="feature-card-badge">Extension Package</span></article>
-            <article className="feature-card"><span className="feature-card-icon" aria-hidden="true">👥</span><h3 className="feature-card-title">Minecraft Player Manager</h3><p>Whitelist, operator, bans, kicks, inventory, and attribute utilities from panel UI.</p><span className="feature-card-badge">Extension Package</span></article>
-            <article className="feature-card"><span className="feature-card-icon" aria-hidden="true">📦</span><h3 className="feature-card-title">Log Uploader</h3><p>Preview and push server logs to mclo.gs for easier debugging and support tickets.</p><span className="feature-card-badge">Extension Package</span></article>
-            <article className="feature-card"><span className="feature-card-icon" aria-hidden="true">💬</span><h3 className="feature-card-title">DiscordSRV Helper</h3><p>Install and configure DiscordSRV with token, channels, history, and access options.</p><span className="feature-card-badge">Extension Package</span></article>
-            <article className="feature-card"><span className="feature-card-icon" aria-hidden="true">🔌</span><h3 className="feature-card-title">Modrinth + CurseForge</h3><p>Native module settings for mod discovery, API control, and cached catalog lookups.</p><span className="feature-card-badge">Core Integration</span></article>
-            <article className="feature-card"><span className="feature-card-icon" aria-hidden="true">🪝</span><h3 className="feature-card-title">Spiget / Spigot Plugins</h3><p>Built-in plugin source support through Spiget API integration controls.</p><span className="feature-card-badge">Core Integration</span></article>
+            {extensions.map((extension) => {
+              const latest = extension.versions?.[0];
+              const badge = latest?.version ? `v${latest.version}` : "Extension Package";
+
+              return (
+                <article className="feature-card" key={extension.id}>
+                  <span className="feature-card-icon" aria-hidden="true">🧩</span>
+                  <h3 className="feature-card-title">{extension.name || extension.id}</h3>
+                  <p>{extension.description || "No description provided yet."}</p>
+                  <span className="feature-card-badge">{badge}</span>
+                </article>
+              );
+            })}
           </div>
+          {!extensionsLoading && !extensions.length ? <p className="section-sub">No extensions found in the live registry.</p> : null}
         </div>
       </section>
 
@@ -143,7 +191,7 @@ export default function HomePage() {
           <p className="cta-sub">Start with the installer, layer in extensions, then scale billing and integrations.</p>
           <div className="cta-actions">
             <a href={siteConfig.installerRepoUrl} className="btn btn-primary btn-lg" target="_blank" rel="noopener noreferrer">Run Installer</a>
-            <a href={siteConfig.extensionsRepoUrl} className="btn btn-secondary btn-lg" target="_blank" rel="noopener noreferrer">Install Extensions</a>
+            <a href="/discord" className="btn btn-secondary btn-lg">Or Join the Discord</a>
           </div>
         </div>
       </section>

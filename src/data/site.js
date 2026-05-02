@@ -5,7 +5,8 @@ export const siteConfig = {
   githubUrl: import.meta.env.VITE_GITHUB_URL || "https://github.com/macery12/M12labs",
   panelRepoUrl: "https://github.com/macery12/M12Labs",
   extensionsRepoUrl: "https://github.com/macery12/M12Labs-Extensions",
-  installerRepoUrl: "https://github.com/macery12/M12Labs-installer"
+  installerRepoUrl: "https://github.com/macery12/M12Labs-installer",
+  extensionsRegistryUrl: "https://raw.githubusercontent.com/macery12/M12Labs-Extensions/refs/heads/main/registry.json"
 };
 
 const categoryMap = {

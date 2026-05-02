@@ -63,7 +63,7 @@ export default function SiteLayout({ children }) {
             <a href={siteConfig.githubUrl} className="nav-github" target="_blank" rel="noopener noreferrer" aria-label="GitHub repository">
               <GitHubIcon />
             </a>
-            <a href={siteConfig.extensionsRepoUrl} className="btn btn-primary" target="_blank" rel="noopener noreferrer">Extensions</a>
+            <a href={siteConfig.docsUrl} className="btn btn-primary" target="_blank" rel="noopener noreferrer">Docs</a>
             <a href={siteConfig.installerRepoUrl} className="btn btn-secondary" target="_blank" rel="noopener noreferrer">Installer</a>
           </div>
         </nav>

@@ -34,7 +34,6 @@ const faqItems = [
 
 export default function SupportPage() {
   const [openFaq, setOpenFaq] = useState(-1);
-  const [success, setSuccess] = useState(false);
 
   return (
     <>
@@ -90,43 +89,6 @@ export default function SupportPage() {
         </div>
       </section>
 
-      <section className="contact-section section" aria-labelledby="contact-heading">
-        <div className="container contact-inner">
-          <h2 className="section-heading" id="contact-heading">Open an issue with context</h2>
-          <p className="section-sub">The form below is a quick triage helper. Include environment details for faster support turnaround.</p>
-
-          {success ? <div className="form-success" role="alert"><span aria-hidden="true">✔</span> Your message was received. We will be in touch soon.</div> : null}
-
-          <form
-            className="contact-form"
-            onSubmit={(event) => {
-              event.preventDefault();
-              setSuccess(true);
-              event.currentTarget.reset();
-            }}
-          >
-            <div className="form-row">
-              <div className="form-group">
-                <label htmlFor="contact-name" className="form-label">Name <span aria-label="required">*</span></label>
-                <input type="text" id="contact-name" name="name" className="form-input" required autoComplete="name" placeholder="Your name" />
-              </div>
-              <div className="form-group">
-                <label htmlFor="contact-email" className="form-label">Email <span aria-label="required">*</span></label>
-                <input type="email" id="contact-email" name="email" className="form-input" required autoComplete="email" placeholder="you@example.com" />
-              </div>
-            </div>
-            <div className="form-group">
-              <label htmlFor="contact-subject" className="form-label">Subject</label>
-              <input type="text" id="contact-subject" name="subject" className="form-input" placeholder="Installer, extension, billing, or integrations" />
-            </div>
-            <div className="form-group">
-              <label htmlFor="contact-message" className="form-label">Message <span aria-label="required">*</span></label>
-              <textarea id="contact-message" name="message" className="form-input form-textarea" required rows="6" placeholder="Include panel version, extension id, provider, and reproduction steps"></textarea>
-            </div>
-            <button type="submit" className="btn btn-primary">Send Message</button>
-          </form>
-        </div>
-      </section>
     </>
   );
 }
