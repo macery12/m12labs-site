@@ -22,8 +22,9 @@ const categoryMap = {
 
 const screenshotMeta = {
   server_configuration_checkout: {
-    title: "Server Configuration Checkout",
-    summary: "Configure the node, billing length, and software stack before reviewing the final order summary.",
+    category: "Payments & Checkout",
+    title: "Checkout Example",
+    summary: "Select a node, billing cycle, and software  — then review your order before checkout.",
     highlight: "Node, cycle, and software selection in one flow"
   },
   billing_dashboard: {
