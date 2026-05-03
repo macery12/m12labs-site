@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { startClarity } from "../lib/telemetryClient";
+import { startClarity } from "../utils/telemetryClient.js";
 
 const CONSENT_KEY = "m12labs_cookie_consent";
 
