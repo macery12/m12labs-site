@@ -83,6 +83,13 @@ export default function SiteLayout({ children }) {
             <a href={siteConfig.extensionsRepoUrl} className="footer-link" target="_blank" rel="noopener noreferrer">Extensions</a>
             <a href={siteConfig.installerRepoUrl} className="footer-link" target="_blank" rel="noopener noreferrer">Installer</a>
             <a href={siteConfig.docsUrl} className="footer-link" target="_blank" rel="noopener noreferrer">Docs</a>
+            <button
+              type="button"
+              className="footer-link footer-link-btn"
+              onClick={() => window.dispatchEvent(new Event("open-cookie-preferences"))}
+            >
+              Cookie Preferences
+            </button>
           </nav>
           <p className="footer-copy">&copy; M12Labs. All rights reserved.</p>
         </div>

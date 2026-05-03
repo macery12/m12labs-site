@@ -953,10 +953,44 @@ button, input, textarea {
   text-decoration: none;
 }
 
+.footer-link-btn {
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  font: inherit;
+}
+
 .footer-copy {
   color: #8fa6ce;
   margin: 0;
   font-size: 0.92rem;
+}
+
+.cookie-banner {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  z-index: 150;
+  width: min(520px, calc(100% - 32px));
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: rgba(8, 17, 35, 0.95);
+  box-shadow: var(--shadow);
+  padding: 14px;
+  display: grid;
+  gap: 12px;
+}
+
+.cookie-banner-text {
+  margin: 0;
+  color: var(--text-muted);
+}
+
+.cookie-banner-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  flex-wrap: wrap;
 }
 
 @keyframes riseFade {
@@ -1044,4 +1078,9 @@ button, input, textarea {
   .hero { padding-top: 78px; }
   .showcase-hero { padding-top: 70px; }
   .modal-content { margin-top: 16px; padding: 12px; }
+  .cookie-banner {
+    right: 12px;
+    bottom: 12px;
+    width: calc(100% - 24px);
+  }
 }
