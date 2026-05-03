@@ -69,12 +69,12 @@ export default function FeaturesPage() {
           <div className="features-category-visual"><div className="screenshot-frame"><img src="/img/screenshots/mods_plugins_browser.png" alt="M12Labs mods and plugins browser with searchable plugin listings" loading="lazy" /></div></div>
           <div className="features-category-text">
             <span className="category-label">Mod &amp; Plugin Integrations</span>
-            <h2 id="cat-integrations" className="section-heading">Built-in support for high-traffic ecosystem sources.</h2>
-            <p className="section-body">Integration modules include Modrinth and CurseForge support for mods and modpacks, plus Spigot support for plugin workflows, with built-in visibility for API usage and service health.</p>
+            <h2 id="cat-integrations" className="section-heading">Mods and plugins from the top sources, ready to install.</h2>
+            <p className="section-body">Pull mods and modpacks from Modrinth and CurseForge, or browse plugins via Spigot — directly inside the panel with no manual downloads needed.</p>
             <ul className="features-list">
-              <li><span className="features-list-icon" aria-hidden="true">✦</span><div><strong>Mod and plugin source coverage</strong><p>Use Modrinth and CurseForge for mods and modpacks, and Spigot sources for plugin discovery workflows.</p></div></li>
-              <li><span className="features-list-icon" aria-hidden="true">✦</span><div><strong>Per-server integration control</strong><p>Choose exactly which servers can use specific integrations based on your own setup and needs.</p></div></li>
-              <li><span className="features-list-icon" aria-hidden="true">✦</span><div><strong>Rate limit and API monitoring</strong><p>Monitor rate limits, request activity, and integration status across providers.</p></div></li>
+              <li><span className="features-list-icon" aria-hidden="true">✦</span><div><strong>Modrinth, CurseForge, and Spigot</strong><p>Search and install content from the most popular mod and plugin sources, with results surfaced directly in the panel.</p></div></li>
+              <li><span className="features-list-icon" aria-hidden="true">✦</span><div><strong>Granular integration control</strong><p>Restrict access down to the nest or egg level — so you control exactly which server types can use each integration source.</p></div></li>
+              <li><span className="features-list-icon" aria-hidden="true">✦</span><div><strong>API usage and rate monitoring</strong><p>Track request activity and rate limit status across providers to keep integrations running smoothly.</p></div></li>
             </ul>
           </div>
         </div>

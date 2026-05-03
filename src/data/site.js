@@ -27,6 +27,12 @@ const screenshotMeta = {
     summary: "Select a node, billing cycle, and software  — then review your order before checkout.",
     highlight: "Node, cycle, and software selection in one flow"
   },
+  payment_integrations: {
+    category: "Payments & Checkout",
+    title: "Payment Integrations",
+    summary: "Connect and manage Stripe, Mollie, and PayPal from one payment settings screen.",
+    highlight: "Multi-provider billing integrations"
+  },
   billing_dashboard: {
     title: "Billing Dashboard",
     summary: "A high-level look at billing health, renewals, and revenue activity in one dashboard.",
@@ -59,6 +65,7 @@ const screenshotMeta = {
 
 const screenshotFiles = [
   "server_configuration_checkout.png",
+  "payment_integrations.png",
   "billing_dashboard.png",
   "extensions_catalog.png",
   "billing_cycle_rules.png",

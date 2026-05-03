@@ -55,7 +55,7 @@ export default function HomePage() {
             </h1>
             <p className="hero-sub">
               M12Labs gives self-hosters a clean way to deploy, manage, and grow your servers with
-              automated setup, a custom extension ecosystem, and a built-in mod and plugin integrations.
+              automated setup, a custom extension ecosystem, and built-in mod and plugin integrations.
             </p>
             <div className="hero-actions">
               <a href="/platform" className="btn btn-primary btn-lg">Explore Platform</a>
@@ -85,7 +85,7 @@ export default function HomePage() {
             <ul className="feature-bullets">
               <li>Signed package registry with archive checksums and versioned release metadata.</li>
               <li>One-command publish flow builds, hashes, and indexes new extension releases.</li>
-              <li>Install from admin UI, repository id, or local package file through Artisan.</li>
+              <li>Install from admin UI, repository ID, or local package file through Artisan.</li>
             </ul>
           </div>
           <div className="feature-row-visual">
@@ -119,16 +119,16 @@ export default function HomePage() {
         <div className="container feature-row-inner">
           <div className="feature-row-text">
             <span className="version-tag">Payment Stack</span>
-            <h2 id="feature-payments-heading" className="feature-row-heading">Multi-provider billing without custom glue code.</h2>
+            <h2 id="feature-payments-heading" className="feature-row-heading">Stripe, Mollie, and PayPal — all supported out of the box.</h2>
             <ul className="feature-bullets">
-              <li>Stripe, Mollie, and PayPal options available with modern integrations management.</li>
-              <li>Order wizard, billing cycles, and revenue views are designed for subscription hosting.</li>
-              <li>Supports cycle multipliers and renewal controls to tune margins and risk.</li>
+              <li>Connect your preferred payment provider from the admin settings with no extra setup.</li>
+              <li>Built-in order flow, billing cycle management, and revenue tracking designed for hosting.</li>
+              <li>Cycle multipliers and renewal controls let you adjust pricing and terms at any time.</li>
             </ul>
           </div>
           <div className="feature-row-visual">
             <div className="screenshot-frame">
-              <img src="/img/screenshots/server_configuration_checkout.png" alt="M12Labs server configuration checkout with node and billing cycle selection" loading="lazy" />
+              <img src="/img/screenshots/payment_integrations.png" alt="M12Labs payment provider integration settings" loading="lazy" />
             </div>
           </div>
         </div>
