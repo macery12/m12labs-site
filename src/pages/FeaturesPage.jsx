@@ -6,13 +6,13 @@ export default function FeaturesPage() {
     <>
       <PageMeta
         title="Platform - M12Labs"
-        description="Discover the M12Labs platform focus: extension ecosystem, automatic installer, multi-provider billing, and built-in mod/plugin integrations."
+        description="Discover the M12Labs platform focus: extension ecosystem, full email support, multi-provider billing, and built-in mod/plugin integrations."
       />
 
       <div className="page-header section">
         <div className="container">
           <h1 className="page-heading">Platform</h1>
-          <p className="page-sub">Four product pillars now drive M12Labs: extensions, installer automation, payment coverage, and integrations.</p>
+          <p className="page-sub">Four product pillars now drive M12Labs: extensions, email delivery, payment coverage, and integrations.</p>
         </div>
       </div>
 
@@ -28,21 +28,21 @@ export default function FeaturesPage() {
               <li><span className="features-list-icon" aria-hidden="true">✦</span><div><strong>Live extension catalog</strong><p>Powered by the official M12Labs Extensions repository, with every listed release reviewed and supported by M12Labs.</p></div></li>
             </ul>
           </div>
-          <div className="features-category-visual"><div className="screenshot-frame"><img src="/img/screenshots/themes_overview.png" alt="M12Labs extensible interface and module controls" loading="lazy" /></div></div>
+          <div className="features-category-visual"><div className="screenshot-frame"><img src="/img/screenshots/extensions_catalog.png" alt="M12Labs extensions catalog with installable module listings" loading="lazy" /></div></div>
         </div>
       </section>
 
-      <section className="features-category features-category--alt section" aria-labelledby="cat-installer">
+      <section className="features-category features-category--alt section" aria-labelledby="cat-email">
         <div className="container features-category-inner">
-          <div className="features-category-visual"><div className="screenshot-frame"><img src="/img/screenshots/plans_pricing.png" alt="Plans and pricing configuration in M12Labs" loading="lazy" /></div></div>
+          <div className="features-category-visual"><div className="screenshot-frame"><img src="/img/screenshots/email_configuration.png" alt="M12Labs email configuration with SMTP and Resend delivery options" loading="lazy" /></div></div>
           <div className="features-category-text">
-            <span className="category-label">Automatic Installer</span>
-            <h2 id="cat-installer" className="section-heading">Guided setup for full panel lifecycle tasks.</h2>
-            <p className="section-body">The Linux installer coordinates dependencies, panel files, database bootstrap, Laravel setup, cron wiring, and worker service installation.</p>
+            <span className="category-label">Email Delivery</span>
+            <h2 id="cat-email" className="section-heading">Full email support with SMTP or Resend.</h2>
+            <p className="section-body">Configure transactional and notification mail with standard SMTP providers or Resend service integration, depending on your stack and deliverability needs.</p>
             <ul className="features-list">
-              <li><span className="features-list-icon" aria-hidden="true">✦</span><div><strong>Quick bootstrap entrypoint</strong><p>Single command pulls and launches the installer.</p></div></li>
-              <li><span className="features-list-icon" aria-hidden="true">✦</span><div><strong>Interactive and unattended modes</strong><p>Choose prompts for guided use or flags for scripted deployment.</p></div></li>
-              <li><span className="features-list-icon" aria-hidden="true">✦</span><div><strong>Server-focused defaults</strong><p>Designed for production nodes running PHP, MariaDB, NGINX, Redis, and workers.</p></div></li>
+              <li><span className="features-list-icon" aria-hidden="true">✦</span><div><strong>SMTP-ready configuration</strong><p>Use your preferred SMTP host with full control over sender, encryption, and credentials.</p></div></li>
+              <li><span className="features-list-icon" aria-hidden="true">✦</span><div><strong>Resend service support</strong><p>Connect through <a href={siteConfig.resendUrl} target="_blank" rel="noopener noreferrer">Resend</a> for modern API-driven mail delivery, with a strong free tier for startups and self-hosters getting started.</p></div></li>
+              <li><span className="features-list-icon" aria-hidden="true">✦</span><div><strong>Custom email template editor</strong><p>Edit and tailor email templates for your own branding, tone, and notification needs.</p></div></li>
             </ul>
           </div>
         </div>
@@ -60,21 +60,21 @@ export default function FeaturesPage() {
               <li><span className="features-list-icon" aria-hidden="true">✦</span><div><strong>Operational dashboards</strong><p>Revenue, failed payments, and renewal forecasting in one view.</p></div></li>
             </ul>
           </div>
-          <div className="features-category-visual"><div className="screenshot-frame"><img src="/img/screenshots/billing_overview.png" alt="Billing overview and payment health dashboard in M12Labs" loading="lazy" /></div></div>
+          <div className="features-category-visual"><div className="screenshot-frame"><img src="/img/screenshots/billing_dashboard.png" alt="Billing overview and payment health dashboard in M12Labs" loading="lazy" /></div></div>
         </div>
       </section>
 
       <section className="features-category features-category--alt section" aria-labelledby="cat-integrations">
         <div className="container features-category-inner">
-          <div className="features-category-visual"><div className="screenshot-frame"><img src="/img/screenshots/themes_editor.png" alt="M12Labs system settings and module configuration interface" loading="lazy" /></div></div>
+          <div className="features-category-visual"><div className="screenshot-frame"><img src="/img/screenshots/mods_plugins_browser.png" alt="M12Labs mods and plugins browser with searchable plugin listings" loading="lazy" /></div></div>
           <div className="features-category-text">
             <span className="category-label">Mod &amp; Plugin Integrations</span>
             <h2 id="cat-integrations" className="section-heading">Built-in support for high-traffic ecosystem sources.</h2>
-            <p className="section-body">Integration modules include Modrinth and CurseForge for mods, plus Spiget support for plugin catalogs, with source configuration and limits built in.</p>
+            <p className="section-body">Integration modules include Modrinth and CurseForge support for mods and modpacks, plus Spigot support for plugin workflows, with built-in visibility for API usage and service health.</p>
             <ul className="features-list">
-              <li><span className="features-list-icon" aria-hidden="true">✦</span><div><strong>Multi-source support</strong><p>Use Modrinth by default and add CurseForge with API credentials.</p></div></li>
-              <li><span className="features-list-icon" aria-hidden="true">✦</span><div><strong>Plugin discovery path</strong><p>Spiget integration enables Spigot plugin workflows from the panel side.</p></div></li>
-              <li><span className="features-list-icon" aria-hidden="true">✦</span><div><strong>Cache and limits tuning</strong><p>Control API caching, page sizes, and download size constraints per environment.</p></div></li>
+              <li><span className="features-list-icon" aria-hidden="true">✦</span><div><strong>Mod and plugin source coverage</strong><p>Use Modrinth and CurseForge for mods and modpacks, and Spigot sources for plugin discovery workflows.</p></div></li>
+              <li><span className="features-list-icon" aria-hidden="true">✦</span><div><strong>Per-server integration control</strong><p>Choose exactly which servers can use specific integrations based on your own setup and needs.</p></div></li>
+              <li><span className="features-list-icon" aria-hidden="true">✦</span><div><strong>Rate limit and API monitoring</strong><p>Monitor rate limits, request activity, and integration status across providers.</p></div></li>
             </ul>
           </div>
         </div>
@@ -82,11 +82,12 @@ export default function FeaturesPage() {
 
       <section className="cta-band section" aria-labelledby="features-cta-heading">
         <div className="container cta-inner">
-          <h2 className="cta-heading" id="features-cta-heading">Want to build on this stack now?</h2>
-          <p className="cta-sub">Start with installer setup, then pull extension packages and enable integrations.</p>
+          <h2 className="cta-heading" id="features-cta-heading">Ready to start your setup?</h2>
+          <p className="cta-sub">Use our installer or docs to get started. Have any questions or get stuck? Join our Discord.</p>
           <div className="cta-actions">
             <a href={siteConfig.installerRepoUrl} className="btn btn-primary btn-lg" target="_blank" rel="noopener noreferrer">Open Installer</a>
-            <a href={siteConfig.extensionsRepoUrl} className="btn btn-secondary btn-lg" target="_blank" rel="noopener noreferrer">Open Extensions</a>
+            <a href={siteConfig.docsUrl} className="btn btn-secondary btn-lg" target="_blank" rel="noopener noreferrer">Open Docs</a>
+            <a href={siteConfig.discordRouteUrl} className="btn btn-ghost btn-lg">Join Discord</a>
           </div>
         </div>
       </section>

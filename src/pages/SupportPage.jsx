@@ -16,7 +16,7 @@ const faqItems = [
     question: "How do I get help quickly?",
     answer: (
       <>
-        The quickest route is the <a href="/discord">Discord server</a>. For bugs and feature requests, use
+        The quickest route is the <a href={siteConfig.discordRouteUrl}>Discord server</a>. For bugs and feature requests, use
         <a href={`${siteConfig.panelRepoUrl}/issues`} target="_blank" rel="noopener noreferrer"> panel issues</a> or
         extension-specific issues in the extension repository.
       </>
@@ -53,7 +53,7 @@ export default function SupportPage() {
         <div className="container">
           <h2 className="section-heading" id="support-channels-heading">Get help</h2>
           <div className="support-cards">
-            <article className="support-card"><span className="support-card-icon" aria-hidden="true">💬</span><h3 className="support-card-title">Discord Community</h3><p className="support-card-body">Fastest route for install blockers, extension questions, and integration troubleshooting.</p><a href="/discord" className="btn btn-primary">Join Discord</a></article>
+            <article className="support-card"><span className="support-card-icon" aria-hidden="true">💬</span><h3 className="support-card-title">Discord Community</h3><p className="support-card-body">Fastest route for install blockers, extension questions, and integration troubleshooting.</p><a href={siteConfig.discordRouteUrl} className="btn btn-primary">Join Discord</a></article>
             <article className="support-card"><span className="support-card-icon" aria-hidden="true">🧩</span><h3 className="support-card-title">Extensions Repository</h3><p className="support-card-body">Package metadata, release history, and extension source for contributed modules.</p><a href={siteConfig.extensionsRepoUrl} className="btn btn-secondary" target="_blank" rel="noopener noreferrer">Open Extensions</a></article>
             <article className="support-card"><span className="support-card-icon" aria-hidden="true">🐧</span><h3 className="support-card-title">Installer Repository</h3><p className="support-card-body">Bootstrap scripts, installation steps, and automation behavior for Linux deployments.</p><a href={siteConfig.installerRepoUrl} className="btn btn-secondary" target="_blank" rel="noopener noreferrer">Open Installer</a></article>
             <article className="support-card"><span className="support-card-icon" aria-hidden="true">📖</span><h3 className="support-card-title">Documentation</h3><p className="support-card-body">General docs for panel operation, module behavior, and release updates.</p><a href={siteConfig.docsUrl} className="btn btn-secondary" target="_blank" rel="noopener noreferrer">Read Docs</a></article>

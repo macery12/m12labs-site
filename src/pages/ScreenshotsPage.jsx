@@ -14,6 +14,9 @@ export default function ScreenshotsPage() {
     return screenshots.filter((shot) => shot.category === selectedCategory);
   }, [selectedCategory]);
 
+  const featuredShot = filtered[0] || screenshots[0];
+  const categoryCount = galleryCategories.filter((category) => category !== "All").length;
+
   useEffect(() => {
     const handleKeyDown = (event) => {
       if (lightboxIndex < 0) {
@@ -54,19 +57,50 @@ export default function ScreenshotsPage() {
     <>
       <PageMeta
         title="Showcase - M12Labs"
-        description="Product showcase for M12Labs platform workflows: payments, billing logic, and UI controls."
+        description="A closer look at M12Labs interface flows across billing, pricing, and UI customization."
       />
 
-      <div className="page-header section">
-        <div className="container">
-          <h1 className="page-heading">Showcase</h1>
-          <p className="page-sub">Visual walkthrough of checkout, billing, cycle management, and panel control surfaces.</p>
+      <section className="showcase-hero section" aria-labelledby="showcase-heading">
+        <div className="container showcase-hero-inner">
+          <div className="showcase-copy">
+            <span className="category-label">Product Showcase</span>
+            <h1 className="page-heading showcase-heading" id="showcase-heading">See how M12Labs looks in real use.</h1>
+            <p className="page-sub showcase-sub">Explore screenshots across billing, pricing logic, and interface customization to get a feel for the panel before you set anything up.</p>
+            <div className="showcase-stats" role="list" aria-label="Showcase stats">
+              <div className="showcase-stat" role="listitem"><strong>{screenshots.length}</strong><span>live screenshots</span></div>
+              <div className="showcase-stat" role="listitem"><strong>{categoryCount}</strong><span>product areas</span></div>
+              <div className="showcase-stat" role="listitem"><strong>{selectedCategory}</strong><span>current view</span></div>
+            </div>
+          </div>
+
+          {featuredShot ? (
+            <button className="showcase-spotlight" type="button" onClick={() => setLightboxIndex(0)}>
+              <div className="showcase-spotlight-copy">
+                <span className="showcase-kicker">Featured Screen</span>
+                <h2>{featuredShot.title}</h2>
+                <p>{featuredShot.summary}</p>
+                <div className="showcase-spotlight-meta">
+                  <span className="feature-card-badge">{featuredShot.category}</span>
+                  <span className="showcase-highlight">{featuredShot.highlight}</span>
+                </div>
+              </div>
+              <div className="screenshot-frame showcase-spotlight-frame">
+                <img src={featuredShot.url} alt={featuredShot.alt} loading="eager" />
+              </div>
+            </button>
+          ) : null}
         </div>
-      </div>
+      </section>
 
       <section className="gallery-section section" aria-labelledby="gallery-heading">
         <div className="container">
-          <h2 className="sr-only" id="gallery-heading">Screenshot gallery</h2>
+          <div className="gallery-header">
+            <div>
+              <h2 className="section-heading" id="gallery-heading">Browse the gallery</h2>
+              <p className="section-sub">Filter by product area and open any screen for a closer look.</p>
+            </div>
+            <p className="gallery-count">{filtered.length} screen{filtered.length === 1 ? "" : "s"} in view</p>
+          </div>
 
           <nav className="gallery-filters" aria-label="Filter screenshots by category">
             {galleryCategories.map((category) => (
@@ -98,9 +132,16 @@ export default function ScreenshotsPage() {
                   >
                     <div className="screenshot-frame gallery-frame">
                       <img src={shot.url} alt={shot.alt} loading="lazy" className="gallery-thumb" />
-                      <div className="gallery-overlay" aria-hidden="true"><span className="gallery-zoom">⌕</span></div>
+                      <div className="gallery-overlay" aria-hidden="true"><span className="gallery-zoom">Open</span></div>
                     </div>
-                    <p className="gallery-caption">{shot.alt}</p>
+                    <div className="gallery-card-body">
+                      <div className="gallery-card-topline">
+                        <span className="feature-card-badge">{shot.category}</span>
+                        <span className="gallery-highlight">{shot.highlight}</span>
+                      </div>
+                      <h3 className="gallery-card-title">{shot.title}</h3>
+                      <p className="gallery-caption">{shot.summary}</p>
+                    </div>
                   </button>
                 ))}
               </div>
@@ -127,7 +168,20 @@ export default function ScreenshotsPage() {
             ←
           </button>
           {lightboxIndex >= 0 && filtered[lightboxIndex] ? (
-            <img className="modal-image" src={filtered[lightboxIndex].url} alt={filtered[lightboxIndex].alt} />
+            <div className="modal-body">
+              <div className="modal-image-wrap">
+                <img className="modal-image" src={filtered[lightboxIndex].url} alt={filtered[lightboxIndex].alt} />
+              </div>
+              <div className="modal-meta">
+                <div className="modal-meta-topline">
+                  <span className="feature-card-badge">{filtered[lightboxIndex].category}</span>
+                  <span className="modal-counter">{lightboxIndex + 1} / {filtered.length}</span>
+                </div>
+                <h2 className="modal-title">{filtered[lightboxIndex].title}</h2>
+                <p className="modal-summary">{filtered[lightboxIndex].summary}</p>
+                <p className="modal-highlight">{filtered[lightboxIndex].highlight}</p>
+              </div>
+            </div>
           ) : null}
           <button
             className="modal-next"

@@ -78,12 +78,11 @@ export default function SiteLayout({ children }) {
             <span>M12Labs</span>
           </div>
           <nav className="footer-links" aria-label="Footer navigation">
-            <a href="/discord" className="footer-link">Discord</a>
+            <a href={siteConfig.discordRouteUrl} className="footer-link">Discord</a>
             <a href={siteConfig.panelRepoUrl} className="footer-link" target="_blank" rel="noopener noreferrer">Panel</a>
             <a href={siteConfig.extensionsRepoUrl} className="footer-link" target="_blank" rel="noopener noreferrer">Extensions</a>
             <a href={siteConfig.installerRepoUrl} className="footer-link" target="_blank" rel="noopener noreferrer">Installer</a>
             <a href={siteConfig.docsUrl} className="footer-link" target="_blank" rel="noopener noreferrer">Docs</a>
-            <a href="/support" className="footer-link">Support</a>
           </nav>
           <p className="footer-copy">&copy; M12Labs. All rights reserved.</p>
         </div>
