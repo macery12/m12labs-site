@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import PageMeta from "../components/PageMeta";
-import { siteConfig } from "../data/site";
+import { getScreenshotUrl, siteConfig } from "../data/site";
 
 export default function HomePage() {
   const [extensions, setExtensions] = useState([]);
@@ -64,7 +64,7 @@ export default function HomePage() {
           </div>
           <div className="hero-visual">
             <div className="screenshot-frame">
-              <img src="/img/screenshots/billing_dashboard.png" alt="M12Labs billing health and revenue dashboard" className="hero-screenshot" loading="eager" />
+              <img src={getScreenshotUrl("billing_dashboard.png")} alt="M12Labs billing health and revenue dashboard" className="hero-screenshot" loading="eager" />
             </div>
           </div>
         </div>
@@ -90,7 +90,7 @@ export default function HomePage() {
           </div>
           <div className="feature-row-visual">
             <div className="screenshot-frame">
-              <img src="/img/screenshots/extensions_catalog.png" alt="M12Labs extensions catalog showing installable modules" loading="lazy" />
+              <img src={getScreenshotUrl("extensions_catalog.png")} alt="M12Labs extensions catalog showing installable modules" loading="lazy" />
             </div>
           </div>
         </div>
@@ -100,7 +100,7 @@ export default function HomePage() {
         <div className="container feature-row-inner">
           <div className="feature-row-visual">
             <div className="screenshot-frame">
-              <img src="/img/screenshots/billing_cycle_rules.png" alt="Billing cycle rules and pricing adjustment settings in M12Labs" loading="lazy" />
+              <img src={getScreenshotUrl("billing_cycle_rules.png")} alt="Billing cycle rules and pricing adjustment settings in M12Labs" loading="lazy" />
             </div>
           </div>
           <div className="feature-row-text">
@@ -128,7 +128,7 @@ export default function HomePage() {
           </div>
           <div className="feature-row-visual">
             <div className="screenshot-frame">
-              <img src="/img/screenshots/payment_integrations.png" alt="M12Labs payment provider integration settings" loading="lazy" />
+              <img src={getScreenshotUrl("payment_integrations.png")} alt="M12Labs payment provider integration settings" loading="lazy" />
             </div>
           </div>
         </div>

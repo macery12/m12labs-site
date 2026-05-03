@@ -1,4 +1,12 @@
 const siteUrl = import.meta.env.VITE_SITE_URL || "https://m12labs.net";
+const buildId = typeof __BUILD_ID__ !== "undefined" ? __BUILD_ID__ : "dev";
+
+const withAssetVersion = (url) => {
+  const separator = url.includes("?") ? "&" : "?";
+  return `${url}${separator}v=${encodeURIComponent(buildId)}`;
+};
+
+export const getScreenshotUrl = (filename) => withAssetVersion(`/img/screenshots/${filename}`);
 
 export const siteConfig = {
   siteUrl,
@@ -87,7 +95,7 @@ export const screenshots = screenshotFiles.map((filename) => {
     title: meta.title || alt,
     summary: meta.summary || "Product showcase screenshot from M12Labs.",
     highlight: meta.highlight || category,
-    url: `/img/screenshots/${filename}`
+    url: getScreenshotUrl(filename)
   };
 });
 

@@ -1,5 +1,5 @@
 import PageMeta from "../components/PageMeta";
-import { siteConfig } from "../data/site";
+import { getScreenshotUrl, siteConfig } from "../data/site";
 
 export default function FeaturesPage() {
   return (
@@ -28,13 +28,13 @@ export default function FeaturesPage() {
               <li><span className="features-list-icon" aria-hidden="true">✦</span><div><strong>Live extension catalog</strong><p>Powered by the official M12Labs Extensions repository, with every listed release reviewed and supported by M12Labs.</p></div></li>
             </ul>
           </div>
-          <div className="features-category-visual"><div className="screenshot-frame"><img src="/img/screenshots/extensions_catalog.png" alt="M12Labs extensions catalog with installable module listings" loading="lazy" /></div></div>
+          <div className="features-category-visual"><div className="screenshot-frame"><img src={getScreenshotUrl("extensions_catalog.png")} alt="M12Labs extensions catalog with installable module listings" loading="lazy" /></div></div>
         </div>
       </section>
 
       <section className="features-category features-category--alt section" aria-labelledby="cat-email">
         <div className="container features-category-inner">
-          <div className="features-category-visual"><div className="screenshot-frame"><img src="/img/screenshots/email_configuration.png" alt="M12Labs email configuration with SMTP and Resend delivery options" loading="lazy" /></div></div>
+          <div className="features-category-visual"><div className="screenshot-frame"><img src={getScreenshotUrl("email_configuration.png")} alt="M12Labs email configuration with SMTP and Resend delivery options" loading="lazy" /></div></div>
           <div className="features-category-text">
             <span className="category-label">Email Delivery</span>
             <h2 id="cat-email" className="section-heading">Full email support with SMTP or Resend.</h2>
@@ -60,13 +60,13 @@ export default function FeaturesPage() {
               <li><span className="features-list-icon" aria-hidden="true">✦</span><div><strong>Operational dashboards</strong><p>Revenue, failed payments, and renewal forecasting in one view.</p></div></li>
             </ul>
           </div>
-          <div className="features-category-visual"><div className="screenshot-frame"><img src="/img/screenshots/billing_dashboard.png" alt="Billing overview and payment health dashboard in M12Labs" loading="lazy" /></div></div>
+          <div className="features-category-visual"><div className="screenshot-frame"><img src={getScreenshotUrl("billing_dashboard.png")} alt="Billing overview and payment health dashboard in M12Labs" loading="lazy" /></div></div>
         </div>
       </section>
 
       <section className="features-category features-category--alt section" aria-labelledby="cat-integrations">
         <div className="container features-category-inner">
-          <div className="features-category-visual"><div className="screenshot-frame"><img src="/img/screenshots/mods_plugins_browser.png" alt="M12Labs mods and plugins browser with searchable plugin listings" loading="lazy" /></div></div>
+          <div className="features-category-visual"><div className="screenshot-frame"><img src={getScreenshotUrl("mods_plugins_browser.png")} alt="M12Labs mods and plugins browser with searchable plugin listings" loading="lazy" /></div></div>
           <div className="features-category-text">
             <span className="category-label">Mod &amp; Plugin Integrations</span>
             <h2 id="cat-integrations" className="section-heading">Mods and plugins from the top sources, ready to install.</h2>
