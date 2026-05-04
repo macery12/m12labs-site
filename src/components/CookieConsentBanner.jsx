@@ -61,7 +61,7 @@ export default function CookieConsentBanner() {
   return (
     <div className="cookie-banner" role="dialog" aria-live="polite" aria-label="Cookie consent">
       <p className="cookie-banner-text">
-        We use analytics cookies to understand clicks and improve the site experience.
+        We use <a href="https://clarity.microsoft.com" target="_blank" rel="noopener noreferrer">Microsoft Clarity</a> analytics cookies to understand how visitors interact with the site and improve their experience.
       </p>
       <div className="cookie-banner-actions">
         <button type="button" className="btn btn-secondary" onClick={rejectAnalytics}>Reject</button>
