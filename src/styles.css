@@ -24,7 +24,7 @@
 }
 
 * { box-sizing: border-box; }
-html, body { margin: 0; padding: 0; }
+html, body { margin: 0; padding: 0; min-height: 100%; }
 html { scroll-behavior: smooth; }
 
 body {
@@ -36,6 +36,15 @@ body {
     linear-gradient(180deg, var(--bg-alt) 0%, var(--bg) 30%, #060b16 100%);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
+}
+
+body.menu-open {
+  overflow: hidden;
+}
+
+#root {
+  min-height: 100vh;
 }
 
 a { color: var(--primary); text-decoration: none; }
@@ -71,7 +80,7 @@ button, input, textarea {
   padding: 0 24px;
 }
 
-.section { padding: var(--section-py) 0; }
+.section { padding: clamp(56px, 7vw, var(--section-py)) 0; }
 
 .btn {
   display: inline-flex;
@@ -79,11 +88,14 @@ button, input, textarea {
   justify-content: center;
   gap: 8px;
   padding: 11px 18px;
+  min-height: 44px;
   border-radius: var(--radius-sm);
   border: 1px solid transparent;
   text-decoration: none;
   font-weight: 600;
   letter-spacing: 0.01em;
+  text-align: center;
+  touch-action: manipulation;
   transition: transform 0.18s ease, box-shadow 0.18s ease, background-color 0.18s ease, border-color 0.18s ease;
 }
 
@@ -145,7 +157,17 @@ button, input, textarea {
   display: flex;
   align-items: center;
   gap: 4px;
+}
+
+.nav-menu {
+  display: flex;
+  align-items: center;
+  gap: 16px;
   flex: 1;
+}
+
+.nav-menu.open {
+  display: flex;
 }
 
 .nav-link {
@@ -228,7 +250,16 @@ button, input, textarea {
   margin: 0 0 28px;
   color: var(--text-muted);
   max-width: 58ch;
-  font-size: 1.08rem;
+  font-size: clamp(1rem, 1.4vw, 1.08rem);
+}
+
+.hero-visual,
+.feature-row-visual,
+.features-category-visual,
+.showcase-spotlight,
+.gallery-item,
+.modal-image-wrap {
+  min-width: 0;
 }
 
 .hero-actions {
@@ -653,6 +684,7 @@ button, input, textarea {
   color: var(--text-muted);
   border-radius: 999px;
   padding: 7px 14px;
+  min-height: 40px;
   cursor: pointer;
 }
 
@@ -673,6 +705,7 @@ button, input, textarea {
   background: rgba(16, 26, 48, 0.56);
   border-radius: var(--radius);
   padding: 12px;
+  width: 100%;
   text-align: left;
   cursor: pointer;
   display: grid;
@@ -761,6 +794,8 @@ button, input, textarea {
   border-radius: var(--radius);
   background: #081123;
   padding: 14px;
+  max-height: calc(100vh - 32px);
+  overflow: auto;
 }
 
 .modal-body {
@@ -776,7 +811,7 @@ button, input, textarea {
 
 .modal-image {
   width: 100%;
-  max-height: calc(100vh - 72px);
+  max-height: calc(100vh - 140px);
   object-fit: contain;
 }
 
@@ -969,7 +1004,7 @@ button, input, textarea {
 .cookie-banner {
   position: fixed;
   right: 16px;
-  bottom: 16px;
+  bottom: max(16px, env(safe-area-inset-bottom));
   z-index: 150;
   width: min(520px, calc(100% - 32px));
   border: 1px solid var(--border);
@@ -1040,33 +1075,82 @@ button, input, textarea {
   }
 
   .nav {
+    position: relative;
+    height: 100%;
     gap: 12px;
+    flex-wrap: nowrap;
   }
 
   .nav-hamburger {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: auto;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    min-width: 44px;
+    min-height: 44px;
+    background: rgba(16, 26, 48, 0.75);
   }
 
-  .nav-links,
-  .nav-actions {
+  .nav-menu {
     position: absolute;
     left: 0;
     right: 0;
-    top: var(--nav-h);
+    top: calc(100% + 10px);
+    z-index: 120;
+    width: 100%;
     background: #081123;
-    border-bottom: 1px solid var(--border);
-    padding: 10px 16px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 12px;
     display: none;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+    box-shadow: var(--shadow);
   }
 
-  .nav-links.open,
-  .nav-actions.open {
+  .nav-menu.open {
     display: flex;
-    flex-wrap: wrap;
   }
 
-  .nav-links { gap: 6px; }
-  .nav-actions { justify-content: flex-start; }
+  .nav-links {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    gap: 4px;
+    margin-top: 0;
+  }
+
+  .nav-link {
+    display: block;
+    width: 100%;
+    padding: 11px 12px;
+  }
+
+  .nav-actions {
+    justify-content: flex-start;
+    align-items: stretch;
+    width: 100%;
+    gap: 8px;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  .nav-actions .btn {
+    width: 100%;
+  }
+
+  .nav-github {
+    justify-content: center;
+    border: 1px solid var(--border);
+    min-height: 44px;
+  }
+
+  .gallery-header {
+    align-items: flex-start;
+  }
 
   .form-row {
     grid-template-columns: 1fr;
@@ -1076,11 +1160,82 @@ button, input, textarea {
 @media (max-width: 640px) {
   .container { padding: 0 16px; }
   .hero { padding-top: 78px; }
+  .hero-actions,
+  .cta-actions {
+    display: grid;
+    grid-template-columns: 1fr;
+    width: 100%;
+  }
+  .hero-actions .btn,
+  .cta-actions .btn {
+    width: 100%;
+  }
+  .quick-facts {
+    justify-content: flex-start;
+  }
+  .quick-fact {
+    width: 100%;
+    justify-content: flex-start;
+  }
+  .showcase-spotlight {
+    padding: 14px;
+  }
+  .feature-card,
+  .support-card,
+  .gallery-item {
+    padding: 14px;
+  }
   .showcase-hero { padding-top: 70px; }
-  .modal-content { margin-top: 16px; padding: 12px; }
+  .modal-content {
+    margin-top: 10px;
+    padding: 12px;
+    width: calc(100% - 12px);
+    max-height: calc(100vh - 20px);
+  }
+  .modal-prev,
+  .modal-next {
+    position: static;
+    transform: none;
+    width: 44px;
+    height: 44px;
+  }
+  .modal-content {
+    display: grid;
+    gap: 10px;
+  }
+  .modal-body {
+    order: 1;
+  }
+  .modal-prev {
+    order: 2;
+    justify-self: start;
+  }
+  .modal-next {
+    order: 3;
+    justify-self: end;
+  }
+  .modal-close {
+    top: 8px;
+    right: 8px;
+  }
   .cookie-banner {
     right: 12px;
-    bottom: 12px;
+    bottom: max(12px, env(safe-area-inset-bottom));
     width: calc(100% - 24px);
+  }
+  .cookie-banner-actions {
+    justify-content: stretch;
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+  .cookie-banner-actions .btn {
+    width: 100%;
+  }
+  .footer-links {
+    gap: 6px;
+  }
+  .footer-link {
+    width: 100%;
+    padding: 8px;
   }
 }

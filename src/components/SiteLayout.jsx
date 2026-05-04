@@ -30,6 +30,25 @@ export default function SiteLayout({ children }) {
     return () => document.removeEventListener("click", closeOnOutsideClick);
   }, []);
 
+  useEffect(() => {
+    const handleEscape = (event) => {
+      if (event.key === "Escape") {
+        setMenuOpen(false);
+      }
+    };
+
+    document.addEventListener("keydown", handleEscape);
+    return () => document.removeEventListener("keydown", handleEscape);
+  }, []);
+
+  useEffect(() => {
+    document.body.classList.toggle("menu-open", menuOpen);
+
+    return () => {
+      document.body.classList.remove("menu-open");
+    };
+  }, [menuOpen]);
+
   return (
     <>
       <header className="nav-wrapper" role="banner">
@@ -42,9 +61,10 @@ export default function SiteLayout({ children }) {
           <button
             className="nav-hamburger"
             onClick={() => setMenuOpen((current) => !current)}
-            aria-controls="nav-links"
+            aria-controls="nav-menu"
             aria-expanded={menuOpen}
             aria-label="Toggle navigation"
+            aria-haspopup="menu"
             type="button"
           >
             <span></span>
@@ -52,19 +72,21 @@ export default function SiteLayout({ children }) {
             <span></span>
           </button>
 
-          <ul className={`nav-links${menuOpen ? " open" : ""}`} id="nav-links" role="list">
-            <li><NavLink to="/" className={({ isActive }) => `nav-link${isActive ? " active" : ""}`}>Home</NavLink></li>
-            <li><NavLink to="/platform" className={({ isActive }) => `nav-link${isActive ? " active" : ""}`}>Platform</NavLink></li>
-            <li><NavLink to="/showcase" className={({ isActive }) => `nav-link${isActive ? " active" : ""}`}>Showcase</NavLink></li>
-            <li><NavLink to="/support" className={({ isActive }) => `nav-link${isActive ? " active" : ""}`}>Support</NavLink></li>
-          </ul>
+          <div className={`nav-menu${menuOpen ? " open" : ""}`} id="nav-menu">
+            <ul className="nav-links" role="list">
+              <li><NavLink to="/" className={({ isActive }) => `nav-link${isActive ? " active" : ""}`}>Home</NavLink></li>
+              <li><NavLink to="/platform" className={({ isActive }) => `nav-link${isActive ? " active" : ""}`}>Platform</NavLink></li>
+              <li><NavLink to="/showcase" className={({ isActive }) => `nav-link${isActive ? " active" : ""}`}>Showcase</NavLink></li>
+              <li><NavLink to="/support" className={({ isActive }) => `nav-link${isActive ? " active" : ""}`}>Support</NavLink></li>
+            </ul>
 
-          <div className={`nav-actions${menuOpen ? " open" : ""}`}>
-            <a href={siteConfig.githubUrl} className="nav-github" target="_blank" rel="noopener noreferrer" aria-label="GitHub repository">
-              <GitHubIcon />
-            </a>
-            <a href={siteConfig.docsUrl} className="btn btn-primary" target="_blank" rel="noopener noreferrer">Docs</a>
-            <a href={siteConfig.installerRepoUrl} className="btn btn-secondary" target="_blank" rel="noopener noreferrer">Installer</a>
+            <div className="nav-actions">
+              <a href={siteConfig.githubUrl} className="nav-github" target="_blank" rel="noopener noreferrer" aria-label="GitHub repository">
+                <GitHubIcon />
+              </a>
+              <a href={siteConfig.docsUrl} className="btn btn-primary" target="_blank" rel="noopener noreferrer">Docs</a>
+              <a href={siteConfig.installerRepoUrl} className="btn btn-secondary" target="_blank" rel="noopener noreferrer">Installer</a>
+            </div>
           </div>
         </nav>
       </header>

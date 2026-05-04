@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import PageMeta from "../components/PageMeta";
 import { getScreenshotUrl, siteConfig } from "../data/site";
 
@@ -58,7 +59,7 @@ export default function HomePage() {
               automated setup, a custom extension ecosystem, and built-in mod and plugin integrations.
             </p>
             <div className="hero-actions">
-              <a href="/platform" className="btn btn-primary btn-lg">Explore Platform</a>
+              <Link to="/platform" className="btn btn-primary btn-lg">Explore Platform</Link>
               <a href={siteConfig.installerRepoUrl} className="btn btn-ghost btn-lg" target="_blank" rel="noopener noreferrer">Installer Guide</a>
             </div>
           </div>
@@ -163,7 +164,7 @@ export default function HomePage() {
         <div className="container screenshots-callout-inner">
           <h2 className="section-heading" id="ss-callout-heading">See real product screens</h2>
           <p className="section-sub">Checkout, billing dashboard, cycles, and theme tooling in one place.</p>
-          <a href="/showcase" className="btn btn-primary btn-lg">View Showcase</a>
+          <Link to="/showcase" className="btn btn-primary btn-lg">View Showcase</Link>
         </div>
       </section>
 
