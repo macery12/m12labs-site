@@ -5,6 +5,8 @@ import { galleryCategories, screenshots } from "../data/site";
 export default function ScreenshotsPage() {
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [lightboxIndex, setLightboxIndex] = useState(-1);
+  const [featuredIndex, setFeaturedIndex] = useState(0);
+  const [isSpotlightFading, setIsSpotlightFading] = useState(false);
 
   const filtered = useMemo(() => {
     if (selectedCategory === "All") {
@@ -14,8 +16,61 @@ export default function ScreenshotsPage() {
     return screenshots.filter((shot) => shot.category === selectedCategory);
   }, [selectedCategory]);
 
-  const featuredShot = filtered[0] || screenshots[0];
+  const featuredShot = filtered[featuredIndex] || filtered[0] || screenshots[0];
+  const featuredShotIndex = featuredShot ? filtered.findIndex((shot) => shot.filename === featuredShot.filename) : -1;
   const categoryCount = galleryCategories.filter((category) => category !== "All").length;
+
+  useEffect(() => {
+    setFeaturedIndex(0);
+    setIsSpotlightFading(false);
+  }, [selectedCategory]);
+
+  useEffect(() => {
+    if (!filtered.length) {
+      setFeaturedIndex(0);
+      return;
+    }
+
+    if (featuredIndex >= filtered.length) {
+      setFeaturedIndex(0);
+    }
+  }, [filtered.length, featuredIndex]);
+
+  useEffect(() => {
+    if (filtered.length < 2) {
+      return undefined;
+    }
+
+    const rotateTimer = window.setInterval(() => {
+      setIsSpotlightFading(true);
+    }, 5200);
+
+    return () => {
+      window.clearInterval(rotateTimer);
+    };
+  }, [filtered.length]);
+
+  useEffect(() => {
+    if (!isSpotlightFading) {
+      return undefined;
+    }
+
+    const swapTimer = window.setTimeout(() => {
+      setFeaturedIndex((current) => {
+        if (!filtered.length) {
+          return 0;
+        }
+
+        const next = current + 1;
+        return next >= filtered.length ? 0 : next;
+      });
+      setIsSpotlightFading(false);
+    }, 220);
+
+    return () => {
+      window.clearTimeout(swapTimer);
+    };
+  }, [isSpotlightFading, filtered.length]);
 
   useEffect(() => {
     const handleKeyDown = (event) => {
@@ -74,7 +129,11 @@ export default function ScreenshotsPage() {
           </div>
 
           {featuredShot ? (
-            <button className="showcase-spotlight" type="button" onClick={() => setLightboxIndex(0)}>
+            <button
+              className={`showcase-spotlight${isSpotlightFading ? " is-fading" : ""}`}
+              type="button"
+              onClick={() => setLightboxIndex(featuredShotIndex >= 0 ? featuredShotIndex : 0)}
+            >
               <div className="showcase-spotlight-copy">
                 <span className="showcase-kicker">Featured Screen</span>
                 <h2>{featuredShot.title}</h2>

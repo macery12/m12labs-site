@@ -20,6 +20,46 @@ export default function SiteLayout({ children }) {
   }, [location.pathname]);
 
   useEffect(() => {
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const revealTargets = Array.from(document.querySelectorAll(".section, .page-header, .footer, .cookie-banner"));
+
+    if (!revealTargets.length) {
+      return undefined;
+    }
+
+    revealTargets.forEach((target, index) => {
+      target.classList.add("reveal-item");
+      target.style.setProperty("--reveal-index", String(index));
+    });
+
+    if (prefersReducedMotion) {
+      revealTargets.forEach((target) => target.classList.add("is-visible"));
+      return undefined;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.2, rootMargin: "0px 0px -10% 0px" }
+    );
+
+    revealTargets.forEach((target) => {
+      target.classList.remove("is-visible");
+      observer.observe(target);
+    });
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [location.pathname]);
+
+  useEffect(() => {
     const closeOnOutsideClick = (event) => {
       if (!event.target.closest(".nav")) {
         setMenuOpen(false);
@@ -91,7 +131,7 @@ export default function SiteLayout({ children }) {
         </nav>
       </header>
 
-      <main id="main-content">{children}</main>
+      <main id="main-content" className="page-shell">{children}</main>
 
       <footer className="footer" role="contentinfo">
         <div className="container footer-inner">

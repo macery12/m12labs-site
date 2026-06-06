@@ -73,7 +73,7 @@ export default function HomePage() {
         <div className="quick-facts" role="list" aria-label="Key features">
           <div className="quick-fact" role="listitem"><span className="qf-icon" aria-hidden="true">🧩</span><span>Extension Registry</span></div>
           <div className="quick-fact" role="listitem"><span className="qf-icon" aria-hidden="true">💰</span><span>Custom Node Pricing</span></div>
-          <div className="quick-fact" role="listitem"><span className="qf-icon" aria-hidden="true">💳</span><span>Stripe + Mollie + PayPal</span></div>
+          <div className="quick-fact" role="listitem"><span className="qf-icon" aria-hidden="true">💳</span><span>Stripe + PayPal</span></div>
           <div className="quick-fact" role="listitem"><span className="qf-icon" aria-hidden="true">🛠️</span><span>Mods + Plugins Built-In</span></div>
         </div>
       </section>
@@ -120,7 +120,7 @@ export default function HomePage() {
         <div className="container feature-row-inner">
           <div className="feature-row-text">
             <span className="version-tag">Payment Stack</span>
-            <h2 id="feature-payments-heading" className="feature-row-heading">Stripe, Mollie, and PayPal — all supported out of the box.</h2>
+            <h2 id="feature-payments-heading" className="feature-row-heading">Stripe and PayPal — all supported out of the box.</h2>
             <ul className="feature-bullets">
               <li>Connect your preferred payment provider from the admin settings with no extra setup.</li>
               <li>Built-in order flow, billing cycle management, and revenue tracking designed for hosting.</li>
@@ -171,16 +171,38 @@ export default function HomePage() {
       <section className="quality-section section" aria-labelledby="quality-heading">
         <div className="container quality-inner">
           <div className="quality-text">
-            <h2 className="section-heading" id="quality-heading">AI-assisted development, human-reviewed delivery</h2>
-            <p className="quality-body">Some implementation work may be assisted by GitHub Copilot AI, but every change is reviewed by a developer before release. We follow common security practices across coding, testing, and deployment workflows.</p>
+            <h2 className="section-heading" id="quality-heading">
+              AI-assisted development, human-reviewed delivery
+            </h2>
+
+            <p className="quality-body">
+              Some implementation work may be assisted by AI coding tools and language models,
+              including cloud-based and self-hosted solutions, but every change is reviewed by
+              a developer before release. We follow common security practices across coding,
+              testing, and deployment workflows.
+            </p>
+
             <ul className="quality-list">
-              <li><span className="quality-check" aria-hidden="true">✔</span>All AI-assisted output is reviewed and edited by maintainers before shipping.</li>
-              <li><span className="quality-check" aria-hidden="true">✔</span>Changes are validated with testing and release checks before deployment.</li>
-              <li><span className="quality-check" aria-hidden="true">✔</span>Common security practices are applied, including least-privilege access and dependency hygiene.</li>
+              <li>
+                <span className="quality-check" aria-hidden="true">✔</span>
+                All AI-assisted output is reviewed and edited by maintainers before shipping.
+              </li>
+              <li>
+                <span className="quality-check" aria-hidden="true">✔</span>
+                Changes are validated with testing and release checks before deployment.
+              </li>
+              <li>
+                <span className="quality-check" aria-hidden="true">✔</span>
+                Common security practices are applied, including least-privilege access and dependency hygiene.
+              </li>
             </ul>
           </div>
+
           <div className="quality-visual" aria-hidden="true">
-            <div className="quality-badge"><span className="quality-badge-icon">🚀</span><span className="quality-badge-label">AI-Assisted, Human-Reviewed</span></div>
+            <div className="quality-badge">
+              <span className="quality-badge-icon">🚀</span>
+              <span className="quality-badge-label">AI-Assisted, Human-Reviewed</span>
+            </div>
           </div>
         </div>
       </section>

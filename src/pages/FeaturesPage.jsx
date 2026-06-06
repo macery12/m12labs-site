@@ -53,7 +53,7 @@ export default function FeaturesPage() {
           <div className="features-category-text">
             <span className="category-label">Multi Payment Providers</span>
             <h2 id="cat-billing" className="section-heading">Billing that supports how your customers pay.</h2>
-            <p className="section-body">M12Labs billing supports Stripe, Mollie, and PayPal flows, with integration credentials managed in admin settings for production operations.</p>
+            <p className="section-body">M12Labs billing supports Stripe and PayPal flows, with integration credentials managed in admin settings for production operations.</p>
             <ul className="features-list">
               <li><span className="features-list-icon" aria-hidden="true">✦</span><div><strong>Checkout wizard</strong><p>Structured order flow from plan selection through payment and confirmation.</p></div></li>
               <li><span className="features-list-icon" aria-hidden="true">✦</span><div><strong>Cycle and multiplier controls</strong><p>Day-based pricing and multiplier steps for granular billing models.</p></div></li>

@@ -29,7 +29,7 @@ const faqItems = [
   },
   {
     question: "Which payment providers are supported?",
-    answer: "Stripe, Mollie, and PayPal are available out of the box. Payment provider settings are managed through the admin configuration area."
+    answer: "Stripe and PayPal are available out of the box. Payment provider settings are managed through the admin configuration area."
   },
   {
     question: "Which mod and plugin sources are integrated?",

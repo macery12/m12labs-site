@@ -1,3 +1,5 @@
+import { showcaseScreenshotFiles } from "./showcaseScreenshots";
+
 const siteUrl = import.meta.env.VITE_SITE_URL || "https://m12labs.net";
 const buildId = typeof __BUILD_ID__ !== "undefined" ? __BUILD_ID__ : "dev";
 
@@ -22,77 +24,128 @@ export const siteConfig = {
 };
 
 const categoryMap = {
+  account: "Account & Security",
+  admin: "Admin Panel",
   billing: "Payments & Checkout",
-  plans: "Billing Logic",
+  email: "Email Delivery",
   extensions: "Extensions & Modules",
-  themes: "UI & Theme Controls"
+  minecraft: "Game Servers",
+  mods: "Mods & Plugins",
+  payment: "Payments & Checkout",
+  plans: "Billing Logic",
+  server: "Payments & Checkout",
+  themes: "UI & Theme Controls",
+  user: "Client Area"
 };
 
 const screenshotMeta = {
-  server_configuration_checkout: {
-    category: "Payments & Checkout",
-    title: "Checkout Example",
-    summary: "Select a node, billing cycle, and software  — then review your order before checkout.",
-    highlight: "Node, cycle, and software selection in one flow"
+  "account-security": {
+    category: "Account & Security",
+    title: "Account Security",
+    summary: "Manage login protection and account-level security settings from the client area.",
+    highlight: "User security controls"
   },
-  payment_integrations: {
-    category: "Payments & Checkout",
-    title: "Payment Integrations",
-    summary: "Connect and manage Stripe, Mollie, and PayPal from one payment settings screen.",
-    highlight: "Multi-provider billing integrations"
+  "admin-billing-categories": {
+    category: "Admin Panel",
+    title: "Billing Categories",
+    summary: "Organize purchasable services into clear billing categories for the storefront.",
+    highlight: "Admin product organization"
   },
-  billing_dashboard: {
-    title: "Billing Dashboard",
-    summary: "A high-level look at billing health, renewals, and revenue activity in one dashboard.",
-    highlight: "Built for fast operational visibility"
+  "admin-egg": {
+    category: "Admin Panel",
+    title: "Egg Configuration",
+    summary: "Review and manage server software options from the admin panel.",
+    highlight: "Server software management"
   },
-  extensions_catalog: {
-    category: "Extensions & Modules",
-    title: "Extensions Catalog",
-    summary: "Browse installable panel extensions, check compatibility, and manage module availability from one catalog view.",
-    highlight: "Trusted extension discovery and management"
+  "admin-servers": {
+    category: "Admin Panel",
+    title: "Server Administration",
+    summary: "View and manage hosted servers from a centralized admin screen.",
+    highlight: "Operational server overview"
   },
-  billing_cycle_rules: {
+  "admin-wings-rs": {
+    category: "Admin Panel",
+    title: "Wings-rs Node Tools",
+    summary: "Manage Wings-rs related node settings and server infrastructure details.",
+    highlight: "Node management workflow"
+  },
+  "billing_cycle_rules": {
+    category: "Billing Logic",
     title: "Billing Cycle Rules",
     summary: "Define billing lengths and pricing adjustment steps for short, standard, and long-term plans.",
     highlight: "Flexible cycle multipliers and pricing rules"
   },
-  email_configuration: {
+  "billing_dashboard": {
+    category: "Payments & Checkout",
+    title: "Billing Dashboard",
+    summary: "A high-level look at billing health, renewals, and revenue activity in one dashboard.",
+    highlight: "Built for fast operational visibility"
+  },
+  "email_configuration": {
     category: "Email Delivery",
     title: "Email Configuration",
     summary: "Set up SMTP or Resend delivery, manage sender identity, and configure mail behavior from one screen.",
     highlight: "Built-in SMTP and Resend support"
   },
-  mods_plugins_browser: {
+  "extensions_catalog": {
+    category: "Extensions & Modules",
+    title: "Extensions Catalog",
+    summary: "Browse installable panel extensions, check compatibility, and manage module availability from one catalog view.",
+    highlight: "Trusted extension discovery and management"
+  },
+  "minecraft-vanilla": {
+    category: "Game Servers",
+    title: "Minecraft Vanilla Setup",
+    summary: "Choose a Minecraft server option and prepare it for deployment from the panel flow.",
+    highlight: "Game server deployment"
+  },
+  "mods_plugins_browser": {
     category: "Mods & Plugins",
     title: "Mods & Plugins Browser",
     summary: "Browse supported plugins from integrated providers with filtering, search, and install-ready listings.",
     highlight: "Modrinth, CurseForge, and plugin discovery workflows"
+  },
+  "payment_integrations": {
+    category: "Payments & Checkout",
+    title: "Payment Integrations",
+    summary: "Connect and manage both Stripe and PayPal from one payment settings screen.",
+    highlight: "Multi-provider billing integrations"
+  },
+  "server_configuration_checkout": {
+    category: "Payments & Checkout",
+    title: "Checkout Example",
+    summary: "Select a node, billing cycle, and software  — then review your order before checkout.",
+    highlight: "Node, cycle, and software selection in one flow"
+  },
+  "user-dashboard": {
+    category: "Client Area",
+    title: "User Dashboard",
+    summary: "Give clients a clear landing page for account, service, and billing activity.",
+    highlight: "Client-facing overview"
   }
 };
 
-const screenshotFiles = [
-  "server_configuration_checkout.png",
-  "payment_integrations.png",
-  "billing_dashboard.png",
-  "extensions_catalog.png",
-  "billing_cycle_rules.png",
-  "email_configuration.png",
-  "mods_plugins_browser.png"
-];
+const titleFromStem = (stem) =>
+  stem
+    .replace(/[-_]+/g, " ")
+    .replace(/\b\w/g, (letter) => letter.toUpperCase());
 
-export const screenshots = screenshotFiles.map((filename) => {
+const getDefaultCategory = (stem) => {
+  const [prefix] = stem.toLowerCase().split(/[-_]+/);
+  return categoryMap[prefix] || "Miscellaneous";
+};
+
+export const screenshots = showcaseScreenshotFiles.map((filename) => {
   const stem = filename.replace(/\.[^.]+$/, "");
-  const prefix = filename.split("_")[0];
-  const meta = screenshotMeta[stem] || {};
-  const category = meta.category || categoryMap[prefix] || "Miscellaneous";
-  const alt = meta.title || stem.replaceAll("_", " ").replace(/\b\w/g, (m) => m.toUpperCase());
+  const meta = screenshotMeta[stem.toLowerCase()] || {};
+  const title = meta.title || titleFromStem(stem);
+  const category = meta.category || getDefaultCategory(stem);
 
   return {
     filename,
     category,
-    alt,
-    title: meta.title || alt,
+    alt: meta.alt || `${title} screenshot`,
+    title,
     summary: meta.summary || "Product showcase screenshot from M12Labs.",
     highlight: meta.highlight || category,
     url: getScreenshotUrl(filename)

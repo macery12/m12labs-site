@@ -24,9 +24,9 @@ export default function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/platform" element={<FeaturesPage />} />
           <Route path="/showcase" element={<ScreenshotsPage />} />
+          <Route path="/support" element={<SupportPage />} />
           <Route path="/features" element={<Navigate to="/platform" replace />} />
           <Route path="/screenshots" element={<Navigate to="/showcase" replace />} />
-          <Route path="/support" element={<SupportPage />} />
           <Route path="/discord" element={<DiscordRedirect />} />
           <Route path="/health" element={<HealthPage />} />
           <Route path="*" element={<Navigate to="/" replace />} />
